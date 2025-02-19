@@ -4,7 +4,7 @@ import { ReactTerminal, TerminalContext } from "react-terminal-c";
 function Terminal() {
   const { setBufferedContent, setTemporaryContent } =
     React.useContext(TerminalContext);
-  const [theme, setTheme] = React.useState("light");
+  const [theme, setTheme] = React.useState("dark");
   const [controlBar, setControlBar] = React.useState(true);
   const [controlButtons, setControlButtons] = React.useState(true);
   const [prompt, setPrompt] = React.useState(">>>");

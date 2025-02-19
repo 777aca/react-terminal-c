@@ -11,17 +11,17 @@
 </p>
 
 <p align="center">
-  <a href="#features">特征</a> •
-  <a href="#installation">安装</a> •
-  <a href="#usage">使用</a> •
-  <a href="#props">属性</a> •
-  <a href="#methods">方法</a> •
-  <a href="#report-a-bug">上报bug</a>
+  <a href="#特征">特征</a> •
+  <a href="#安装">安装</a> •
+  <a href="#使用">使用</a> •
+  <a href="#属性">属性</a> •
+  <a href="#方法">方法</a> •
+  <a href="#上报bug">上报bug</a>
 </p>
 
 ![Terminal png](https://react-terminal-c.sirv.com/static/terminal-dracula.png)
 
-## Looking for Contributors
+## 寻找贡献者
 由于时间限制，我目前没有积极维护这个库，正在寻找贡献者来帮助。如果你发现任何问题或有新特性，欢迎提交拉取请求，我将很高兴进行审查。谢谢！
 
 ## 特征
