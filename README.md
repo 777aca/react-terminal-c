@@ -5,7 +5,6 @@
 <p align="center">🚀 React component that renders a Terminal 🖥</p>
 
 <p align="center">
-  <a href="https://github.com/777aca/react-terminal-c/actions?query=Build+and+Test"><img src="https://github.com/777aca/react-terminal-c/workflows/Build%20and%20Test/badge.svg" data-canonical-src="https://github.com/777aca/react-terminal-c/workflows/Build%20and%20Test/badge.svg"/></a>
   <a href="https://codecov.io/gh/777aca/react-terminal-c"><img src="https://codecov.io/gh/777aca/react-terminal-c/branch/main/graph/badge.svg?token=xt1kdpvlam" data-canonical-src="https://codecov.io/gh/777aca/react-terminal-c/branch/main/graph/badge.svg?token=xt1kdpvlam"/></a>
   <a href="https://www.npmjs.com/package/react-terminal-c"><img src="https://img.shields.io/npm/v/react-terminal-c/latest" data-canonical-src="https://img.shields.io/npm/v/react-terminal-c/latest"/></a>
   <img src="https://img.shields.io/npm/l/react-terminal-c" data-canonical-src="https://img.shields.io/npm/l/react-terminal-c"/>
