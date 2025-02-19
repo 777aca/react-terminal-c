@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Editor Editor renders correctly 1`] = `
+<div>
+  <div
+    class="editor curvedTop null"
+    id="terminalEditor"
+    style="background: rgb(253, 246, 228);"
+  >
+    <span
+      style="color: rgb(169, 23, 168);"
+    >
+      $
+    </span>
+    <div
+      class="lineText"
+    >
+      <span
+        class="preWhiteSpace"
+      />
+      <span
+        class="preWhiteSpace"
+      />
+    </div>
+  </div>
+</div>
+`;

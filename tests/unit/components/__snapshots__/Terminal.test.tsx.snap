@@ -1,0 +1,152 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Terminal Terminal doesn't render control bar 1`] = `
+<div>
+  <div
+    class="theme--light"
+    data-testid="terminal"
+    id="terminalContainer"
+  >
+    <div
+      class="terminal"
+      style="background: rgb(216, 216, 216); color: rgb(51, 51, 51);"
+    >
+      <div
+        class="editor curvedTop null"
+        id="terminalEditor"
+        style="background: rgb(253, 246, 228);"
+      >
+        <span
+          style="color: rgb(169, 23, 168);"
+        >
+          &gt;&gt;&gt;
+        </span>
+        <div
+          class="lineText"
+        >
+          <span
+            class="preWhiteSpace"
+          />
+          <span
+            class="caret"
+          >
+            <span
+              class="caretAfter"
+              style="background: rgb(51, 51, 51);"
+            />
+          </span>
+          <span
+            class="preWhiteSpace"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Terminal Terminal doesn't render control buttons 1`] = `
+<div>
+  <div
+    class="theme--light"
+    data-testid="terminal"
+    id="terminalContainer"
+  >
+    <div
+      class="terminal"
+      style="background: rgb(216, 216, 216); color: rgb(51, 51, 51);"
+    >
+      <div
+        class="controls"
+      />
+      <div
+        class="editor null editorWithTopBar"
+        id="terminalEditor"
+        style="background: rgb(253, 246, 228);"
+      >
+        <span
+          style="color: rgb(169, 23, 168);"
+        >
+          &gt;&gt;&gt;
+        </span>
+        <div
+          class="lineText"
+        >
+          <span
+            class="preWhiteSpace"
+          />
+          <span
+            class="caret"
+          >
+            <span
+              class="caretAfter"
+              style="background: rgb(51, 51, 51);"
+            />
+          </span>
+          <span
+            class="preWhiteSpace"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Terminal Terminal renders correctly 1`] = `
+<div>
+  <div
+    class="theme--light"
+    data-testid="terminal"
+    id="terminalContainer"
+  >
+    <div
+      class="terminal"
+      style="background: rgb(216, 216, 216); color: rgb(51, 51, 51);"
+    >
+      <div
+        class="controls"
+      >
+        <div
+          class="consoleCtrl close"
+        />
+        <div
+          class="consoleCtrl minimize"
+        />
+        <div
+          class="consoleCtrl maximize"
+        />
+      </div>
+      <div
+        class="editor null editorWithTopBar"
+        id="terminalEditor"
+        style="background: rgb(253, 246, 228);"
+      >
+        <span
+          style="color: rgb(169, 23, 168);"
+        >
+          &gt;&gt;&gt;
+        </span>
+        <div
+          class="lineText"
+        >
+          <span
+            class="preWhiteSpace"
+          />
+          <span
+            class="caret"
+          >
+            <span
+              class="caretAfter"
+              style="background: rgb(51, 51, 51);"
+            />
+          </span>
+          <span
+            class="preWhiteSpace"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

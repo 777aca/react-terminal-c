@@ -1,0 +1,96 @@
+{
+  "name": "react-terminal-c",
+  "version": "v0.1.0",
+  "description": "React component that renders a terminal",
+  "main": "dist/index.js",
+  "module": "dist/index.es.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "cross-env NODE_ENV=production rollup -c",
+    "watch": "rollup -cw",
+    "test": "jest"
+  },
+  "files": [
+    "dist",
+    "LICENCE",
+    "package.json",
+    "README.md"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/777aca/react-terminal-c.git"
+  },
+  "keywords": [
+    "node",
+    "npm",
+    "react",
+    "terminal"
+  ],
+  "author": "JokerChor",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/777aca/react-terminal-c/issues"
+  },
+  "homepage": "https://github.com/777aca/react-terminal-c#readme",
+  "dependencies": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "ua-parser-js": "^2.0.0"
+  },
+  "devDependencies": {
+    "@rollup/plugin-terser": "^0.4.4",
+    "@rollup/plugin-typescript": "^12.1.2",
+    "@testing-library/dom": "^10.4.0",
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/react": "^16.1.0",
+    "@testing-library/user-event": "^14.5.2",
+    "@types/jest": "^29.5.14",
+    "@types/react": "^19.0.7",
+    "@types/react-dom": "^19.0.3",
+    "@types/react-test-renderer": "^19.0.0",
+    "@typescript-eslint/eslint-plugin": "^8.20.0",
+    "@typescript-eslint/parser": "^8.20.0",
+    "codecov": "^3.8.2",
+    "cross-env": "^7.0.3",
+    "eslint": "^8.33.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-jsx-a11y": "^6.7.1",
+    "eslint-plugin-react": "^7.32.2",
+    "eslint-plugin-react-hooks": "^4.5.0",
+    "identity-obj-proxy": "^3.0.0",
+    "install": "^0.13.0",
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0",
+    "npm": "^11.0.0",
+    "postcss": "^8.5.1",
+    "rollup": "^4.30.1",
+    "rollup-plugin-postcss": "^4.0.2",
+    "sass": "^1.83.4",
+    "ts-jest": "^29.2.5",
+    "tslib": "^2.8.1",
+    "typescript": "^5.7.3"
+  },
+  "jest": {
+    "testEnvironment": "jsdom",
+    "transform": {
+      "^.+\\.tsx?$": "ts-jest"
+    },
+    "moduleNameMapper": {
+      "^.+\\.(css|less|scss)$": "identity-obj-proxy"
+    },
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json",
+      "node"
+    ],
+    "testMatch": [
+      "**/tests/**/?(*.)+(spec|test).[jt]s?(x)"
+    ],
+    "coverageDirectory": "./coverage/",
+    "collectCoverage": true
+  }
+}

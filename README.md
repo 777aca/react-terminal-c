@@ -1,0 +1,143 @@
+<h1 align="center">
+  <img src="https://react-terminal-c.sirv.com/static/terminal-logo-text.png" data-canonical-src="https://react-terminal-c.sirv.com/static/terminal-logo-text.png" width="145" height="50" />
+</h1>
+
+<p align="center">🚀 React component that renders a Terminal 🖥</p>
+
+<p align="center">
+  <a href="https://github.com/777aca/react-terminal-c/actions?query=Build+and+Test"><img src="https://github.com/777aca/react-terminal-c/workflows/Build%20and%20Test/badge.svg" data-canonical-src="https://github.com/777aca/react-terminal-c/workflows/Build%20and%20Test/badge.svg"/></a>
+  <a href="https://codecov.io/gh/777aca/react-terminal-c"><img src="https://codecov.io/gh/777aca/react-terminal-c/branch/main/graph/badge.svg?token=xt1kdpvlam" data-canonical-src="https://codecov.io/gh/777aca/react-terminal-c/branch/main/graph/badge.svg?token=xt1kdpvlam"/></a>
+  <a href="https://www.npmjs.com/package/react-terminal-c"><img src="https://img.shields.io/npm/v/react-terminal-c/latest" data-canonical-src="https://img.shields.io/npm/v/react-terminal-c/latest"/></a>
+  <img src="https://img.shields.io/npm/l/react-terminal-c" data-canonical-src="https://img.shields.io/npm/l/react-terminal-c"/>
+</p>
+
+<p align="center">
+  <a href="#features">特征</a> •
+  <a href="#installation">安装</a> •
+  <a href="#usage">使用</a> •
+  <a href="#props">属性</a> •
+  <a href="#methods">方法</a> •
+  <a href="#report-a-bug">上报bug</a>
+</p>
+
+![Terminal png](https://react-terminal-c.sirv.com/static/terminal-dracula.png)
+
+## Looking for Contributors
+由于时间限制，我目前没有积极维护这个库，正在寻找贡献者来帮助。如果你发现任何问题或有新特性，欢迎提交拉取请求，我将很高兴进行审查。谢谢！
+
+## 特征
+- 移动端支持 📱
+- 可自定义命令、提示符和错误信息 ✅
+- 支持回调（异步/非异步）命令 🔄
+- 支持使用上下箭头查看命令历史 🔼
+- 支持复制/粘贴 📋
+- 内建主题并支持创建更多 🚀
+
+## 安装
+使用npm或yarn安装依赖：:
+```
+npm install react-terminal-c
+```
+OR
+```
+yarn add react-terminal-c
+```
+
+## 使用
+```
+import { ReactTerminal } from "react-terminal-c";
+
+function App(props) {
+  // Define commands here
+  const commands = {
+    whoami: "JokerChor",
+    cd: (directory) => `changed path to ${directory}`
+  };
+
+  return (
+    <ReactTerminal
+      commands={commands}
+    />
+  );
+}
+```
+
+还要确保将主挂载点包裹在TerminalContextProvider周围。即使组件被卸载，然后再挂载回来，也会保持这个状态：
+```
+import { TerminalContextProvider } from "react-terminal-c";
+
+ReactDOM.render(
+  <TerminalContextProvider>
+    <App/>
+  </TerminalContextProvider>,
+  rootElement
+);
+```
+
+如果你需要多个ReactTerminal实例，则不能包裹App，请包裹每一个ReactTerminal实例：
+```
+import { TerminalContextProvider } from "react-terminal-c";
+
+function App(props) {
+  // Define commands here
+  const commands = {
+    whoami: "JokerChor",
+    cd: (directory) => `changed path to ${directory}`
+  };
+
+  return (
+    <TerminalContextProvider>
+      <YourComponent>
+        <ReactTerminal  commands={commands} />
+      </YourComponent>
+    </TerminalContextProvider>
+  );
+}
+```
+
+## 方法
+| name | description | default
+|--|--|--
+| `clear` | 清除终端输出 | null
+| `reset` | 重置终端状态 | null
+
+## 创建自定义主题
+该组件的主题很少： light ， dark ， material-light ， material-dark ， material-ocean ， matrix和dracula 。您还可以通过在道具中传递themes参数来创建自定义主题，如下所示：
+
+```
+<ReactTerminal
+  commands={commands}
+  themes={{
+    "my-custom-theme": {
+      themeBGColor: "#272B36",
+      themeToolbarColor: "#DBDBDB",
+      themeColor: "#FFFEFC",
+      themePromptColor: "#a917a8"
+    }
+  }}
+  theme="my-custom-theme"
+/>
+```
+
+## 属性
+| name | description | default
+|--|--|--
+| `welcomeMessage` | 在提示开始之前，在开始时显示的欢迎消息。值可以是字符串、JSX/HTML标签或回调 | null
+| `prompt` | 终端提示符 | >>>
+| `commands` | 作为键值对提供的命令列表，其中值可以是字符串、JSX/HTML标记或回调 | null
+| `errorMessage` | 消息显示当未识别的命令执行时，可以是字符串，JSX/HTML标记或回调 | "not found!"
+| `enableInput` | 是否允许用户输入 | true
+| `showControlBar` | 是否显示顶部控制条 | true
+| `showControlButtons` | 是否在终端顶部栏显示控制按钮 | true
+| `theme` | 终端主题 | "light"
+| `themes` | 对象来提供自定义主题 | null
+| `defaultHandler` | 当没有命令匹配时，将使用默认处理程序（如果提供）。当您事先不知道命令列表/希望将它们发送到服务器进行处理时非常有用 | null
+
+## 方法
+| name | description | default
+|--|--|--
+| `appendCommandToHistory` | 可以手动添加你的Command到History | null
+
+
+## 上报bug
+如果你在这个库中发现了一个bug，请提交GitHub issue [here](https://github.com/777aca/react-terminal-c/issues).
