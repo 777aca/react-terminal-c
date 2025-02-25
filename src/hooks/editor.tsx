@@ -21,38 +21,6 @@ export const useEditorInput = (
   const { getPreviousCommand, getNextCommand } =
     React.useContext(TerminalContext);
 
-  const copyHandler = (text: string) => {
-    const tempInput = document.createElement("input");
-    tempInput.value = text;
-    document.body.appendChild(tempInput);
-    tempInput.select();
-    tempInput.setSelectionRange(0, 99999); // 移动端兼容
-    try {
-      document.execCommand("copy");
-      console.log("复制成功");
-    } catch (err) {
-      console.error("复制失败:", err);
-    }
-    document.body.removeChild(tempInput);
-  };
-
-  // 新增的粘贴处理函数
-  const handlePaste = (pastedText: string) => {
-    console.log(pastedText);
-
-    const [caretTextBefore, caretTextAfter] = Utils.splitStringAtIndex(
-      editorInput || "",
-      caretPosition
-    );
-
-    // 消毒处理（可选）
-    const sanitizedText = pastedText.replace(/[\x00-\x1F]/g, ""); // 移除控制字符
-
-    const nextInput = caretTextBefore + sanitizedText + caretTextAfter;
-    setEditorInput(nextInput);
-    setCaretPosition(caretPosition + sanitizedText.length);
-  };
-
   const handleKeyDownEvent = (event: any) => {
     if (!consoleFocused) {
       return;
@@ -78,9 +46,8 @@ export const useEditorInput = (
         caretPosition
       );
       nextInput = caretTextBefore.slice(0, -1) + caretTextAfter;
-      if (editorInput && editorInput.length !== 0) {
+      if (editorInput && editorInput.length !== 0)
         setCaretPosition(caretPosition - 1);
-      }
     } else if (eventKey === "ArrowUp") {
       nextInput = getPreviousCommand();
       if (nextInput) setCaretPosition(nextInput.length);
@@ -92,9 +59,8 @@ export const useEditorInput = (
       if (caretPosition > 0) setCaretPosition(caretPosition - 1);
       nextInput = editorInput;
     } else if (eventKey === "ArrowRight") {
-      if (caretPosition < editorInput.length) {
+      if (caretPosition < editorInput.length)
         setCaretPosition(caretPosition + 1);
-      }
       nextInput = editorInput;
     } else if (eventKey === "Tab") {
       const command = Object.keys(commands).find(
@@ -110,38 +76,24 @@ export const useEditorInput = (
       (event.metaKey || event.ctrlKey) &&
       eventKey.toLowerCase() === "v"
     ) {
-      if (navigator.clipboard && navigator.clipboard.readText) {
-        // 现代浏览器方案
-        navigator.clipboard
-          .readText()
-          .then((text) => handlePaste(text))
-          .catch((err) => console.error("粘贴失败:", err));
-      } else {
-        // 降级方案：使用隐藏输入框
-        // 创建并追加输入框后立即触发焦点事件
-        const tempInput = document.createElement("input");
-        tempInput.style.position = "fixed";
-        tempInput.style.opacity = "0";
-        document.body.appendChild(tempInput);
-
-        // 添加异步事件监听确保焦点就绪
-        setTimeout(() => {
-          tempInput.focus();
-          // 监听输入事件实时获取值
-          tempInput.addEventListener("input", (e) => {
-            handlePaste(e.target?.value);
-            document.body.removeChild(tempInput);
-          });
-          tempInput.addEventListener("focus", () => {
-            document.execCommand("paste"); // 主动触发粘贴动作
-          });
-        }, 50);
-      }
+      navigator.clipboard.readText().then((pastedText) => {
+        const [caretTextBefore, caretTextAfter] = Utils.splitStringAtIndex(
+          editorInput || "",
+          caretPosition
+        );
+        nextInput = caretTextBefore + pastedText + caretTextAfter;
+        setCaretPosition(caretPosition + pastedText.length);
+        setEditorInput(nextInput);
+      });
     } else if (
       (event.metaKey || event.ctrlKey) &&
       eventKey.toLowerCase() === "c"
     ) {
-      copyHandler(window.getSelection().toString());
+      const selectedText = window.getSelection().toString();
+      navigator.clipboard.writeText(selectedText).then(() => {
+        nextInput = editorInput;
+        setEditorInput(nextInput);
+      });
     } else if (eventKey && eventKey.length === 1) {
       const [caretTextBefore, caretTextAfter] = Utils.splitStringAtIndex(
         editorInput,
@@ -248,16 +200,7 @@ export const useBufferedContent = (
           output = errorMessage;
         }
       }
-      const nextBufferedContent = (
-        <>
-          {output ? (
-            <pre>
-              {output}
-              <br />
-            </pre>
-          ) : null}
-        </>
-      );
+      const nextBufferedContent = <>{output ? <pre>{output}</pre> : null}</>;
 
       setBufferedContent((previousBufferedContent: React.ReactNode) => (
         <>
@@ -334,7 +277,7 @@ export const useCurrentLine = (
   const currentLine = !processCurrentLine ? (
     <>
       {mobileInput}
-      <span style={{ color: themeStyles.themePromptColor }}>{prompt}</span>
+      <span style={{ color: themeStyles.themePromptColor }}>{prompt} </span>
       <div className={style.lineText}>
         <span className={style.preWhiteSpace}>{beforeCaretText}</span>
         {consoleFocused && caret ? ( // if caret isn't true, caret won't be displayed
