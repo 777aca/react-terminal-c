@@ -200,7 +200,16 @@ export const useBufferedContent = (
           output = errorMessage;
         }
       }
-      const nextBufferedContent = <>{output ? <pre>{output}</pre> : null}</>;
+      const nextBufferedContent = (
+        <>
+          {output ? (
+            <pre>
+              {output}
+              <br />
+            </pre>
+          ) : null}
+        </>
+      );
 
       setBufferedContent((previousBufferedContent: React.ReactNode) => (
         <>
@@ -277,7 +286,7 @@ export const useCurrentLine = (
   const currentLine = !processCurrentLine ? (
     <>
       {mobileInput}
-      <span style={{ color: themeStyles.themePromptColor }}>{prompt} </span>
+      <span style={{ color: themeStyles.themePromptColor }}>{prompt}</span>
       <div className={style.lineText}>
         <span className={style.preWhiteSpace}>{beforeCaretText}</span>
         {consoleFocused && caret ? ( // if caret isn't true, caret won't be displayed

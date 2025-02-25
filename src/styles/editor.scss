@@ -51,42 +51,49 @@
         -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
         filter: alpha(opacity=0);
       }
+
       100% {
         opacity: 1;
         -ms-filter: none;
         filter: none;
       }
     }
+
     @-webkit-keyframes blink {
       0% {
         opacity: 0;
         -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
         filter: alpha(opacity=0);
       }
+
       100% {
         opacity: 1;
         -ms-filter: none;
         filter: none;
       }
     }
+
     @-o-keyframes blink {
       0% {
         opacity: 0;
         -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
         filter: alpha(opacity=0);
       }
+
       100% {
         opacity: 1;
         -ms-filter: none;
         filter: none;
       }
     }
+
     @keyframes blink {
       0% {
         opacity: 0;
         -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
         filter: alpha(opacity=0);
       }
+
       100% {
         opacity: 1;
         -ms-filter: none;
@@ -107,4 +114,8 @@
 .curvedTop {
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
+}
+
+pre {
+  margin: 0;
 }
