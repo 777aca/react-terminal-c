@@ -150,7 +150,8 @@ export const useBufferedContent = (
     }
 
     const processCommand = async (text: string) => {
-      const [command, ...rest] = text.trim().split(" ");
+      // const [command, ...rest] = text.trim().split(" ");
+      const command = text;
       let output = "";
 
       if (command === "clear") {
@@ -182,20 +183,18 @@ export const useBufferedContent = (
       setAfterCaretText("");
 
       if (text) {
-        const commandArguments = rest.join(" ");
-
         if (command && commands[command]) {
           const executor = commands[command];
 
           if (typeof executor === "function") {
-            output = await executor(commandArguments);
+            output = await executor(command);
           } else {
             output = executor;
           }
         } else if (typeof defaultHandler === "function") {
-          output = await defaultHandler(command, commandArguments);
+          output = await defaultHandler(command);
         } else if (typeof errorMessage === "function") {
-          output = await errorMessage(command, commandArguments);
+          output = await errorMessage(command);
         } else {
           output = errorMessage;
         }
