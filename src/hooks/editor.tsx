@@ -6,6 +6,7 @@ import { TerminalContext } from "../contexts/TerminalContext";
 
 import Utils from "../common/Utils";
 
+// 导出一个名为useEditorInput的函数，用于处理编辑器输入
 export const useEditorInput = (
   consoleFocused: boolean,
   editorInput: string,
@@ -16,7 +17,8 @@ export const useEditorInput = (
   setBeforeCaretText: any,
   setAfterCaretText: any,
   enableInput: boolean,
-  commands: any
+  commands: any,
+  multilineMode: boolean
 ) => {
   const { getPreviousCommand, getNextCommand } =
     React.useContext(TerminalContext);
@@ -25,7 +27,6 @@ export const useEditorInput = (
     if (!consoleFocused) {
       return;
     }
-    // checks the value of enableInput and returns if its false
     if (!enableInput) {
       return;
     }
@@ -33,13 +34,22 @@ export const useEditorInput = (
 
     const eventKey = event.key;
 
-    if (eventKey === "Enter") {
+    if (multilineMode) {
+      if (multilineMode && event.ctrlKey && eventKey === "Enter") {
+        setProcessCurrentLine(true);
+        return;
+      }
+    } else if (eventKey === "Enter") {
       setProcessCurrentLine(true);
       return;
     }
 
     let nextInput = null;
 
+    if (event.ctrlKey && eventKey === "Enter") {
+      setProcessCurrentLine(true);
+      return;
+    }
     if (eventKey === "Backspace") {
       const [caretTextBefore, caretTextAfter] = Utils.splitStringAtIndex(
         editorInput,
@@ -48,10 +58,16 @@ export const useEditorInput = (
       nextInput = caretTextBefore.slice(0, -1) + caretTextAfter;
       if (editorInput && editorInput.length !== 0)
         setCaretPosition(caretPosition - 1);
-    } else if (eventKey === "ArrowUp") {
+    } else if (
+      (multilineMode && event.ctrlKey && eventKey === "ArrowUp") ||
+      (!multilineMode && eventKey === "ArrowUp")
+    ) {
       nextInput = getPreviousCommand();
       if (nextInput) setCaretPosition(nextInput.length);
-    } else if (eventKey === "ArrowDown") {
+    } else if (
+      (multilineMode && event.ctrlKey && eventKey === "ArrowDown") ||
+      (!multilineMode && eventKey === "ArrowDown")
+    ) {
       nextInput = getNextCommand();
       if (nextInput) setCaretPosition(nextInput.length);
       else setCaretPosition(0);
@@ -232,7 +248,8 @@ export const useCurrentLine = (
   errorMessage: any,
   enableInput: boolean,
   defaultHandler: any,
-  wrapperRef: any
+  wrapperRef: any,
+  multilineMode: boolean
 ) => {
   const style = React.useContext(StyleContext);
   const themeStyles = React.useContext(ThemeContext);
@@ -326,7 +343,8 @@ export const useCurrentLine = (
     setBeforeCaretText,
     setAfterCaretText,
     enableInput,
-    commands
+    commands,
+    multilineMode
   );
 
   useBufferedContent(
