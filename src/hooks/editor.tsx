@@ -73,8 +73,8 @@ export const useEditorInput = (
         return;
       }
     } else if (
-      (event.metaKey || event.ctrlKey) &&
-      eventKey.toLowerCase() === "v"
+      ((event.metaKey || event.ctrlKey) && eventKey.toLowerCase() === "v") ||
+      (event.shiftKey && event.key === "Insert")
     ) {
       navigator.clipboard.readText().then((pastedText) => {
         const [caretTextBefore, caretTextAfter] = Utils.splitStringAtIndex(
