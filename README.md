@@ -139,8 +139,8 @@ function App(props) {
 | `errorMessage`       | 消息显示当未识别的命令执行时，可以是字符串，JSX/HTML 标记或回调                                                   | "not found!" |
 | `enableInput`        | 是否允许用户输入                                                                                                  | true         |
 | `showControlBar`     | 是否显示顶部控制条                                                                                                | true         |
-| `showControlButtons` | 是否在终端顶部栏显示控制按钮                                                                                      | false        |
-| `multilineMode`      | 是否开启多行模式                                                                                                  | true         |
+| `showControlButtons` | 是否在终端顶部栏显示控制按钮                                                                                      | true         |
+| `multilineMode`      | 是否开启多行模式                                                                                                  | false        |
 | `theme`              | 终端主题                                                                                                          | "light"      |
 | `themes`             | 对象来提供自定义主题                                                                                              | null         |
 | `defaultHandler`     | 当没有命令匹配时，将使用默认处理程序（如果提供）。当您事先不知道命令列表/希望将它们发送到服务器进行处理时非常有用 | null         |
