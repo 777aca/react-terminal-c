@@ -105,10 +105,11 @@ function App(props) {
 
 ## 方法
 
-| name    | description  | default |
-| ------- | ------------ | ------- |
-| `clear` | 清除终端输出 | null    |
-| `reset` | 重置终端状态 | null    |
+| name                     | description                         | default |
+| ------------------------ | ----------------------------------- | ------- |
+| `clear`                  | 清除终端输出                        | null    |
+| `reset`                  | 重置终端状态                        | null    |
+| `appendCommandToHistory` | 可以手动添加你的 Command 到 History | null    |
 
 ## 创建自定义主题
 
@@ -144,12 +145,6 @@ function App(props) {
 | `theme`              | 终端主题                                                                                                          | "light"      |
 | `themes`             | 对象来提供自定义主题                                                                                              | null         |
 | `defaultHandler`     | 当没有命令匹配时，将使用默认处理程序（如果提供）。当您事先不知道命令列表/希望将它们发送到服务器进行处理时非常有用 | null         |
-
-## 方法
-
-| name                     | description                         | default |
-| ------------------------ | ----------------------------------- | ------- |
-| `appendCommandToHistory` | 可以手动添加你的 Command 到 History | null    |
 
 ## 上报 bug
 
