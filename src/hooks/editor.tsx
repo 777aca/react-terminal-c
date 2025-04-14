@@ -35,21 +35,24 @@ export const useEditorInput = (
     const eventKey = event.key;
 
     if (multilineMode) {
-      if (multilineMode && event.ctrlKey && eventKey === "Enter") {
+      if (event.ctrlKey && eventKey === "Enter") {
         setProcessCurrentLine(true);
         return;
       }
-    } else if (eventKey === "Enter") {
+      if (eventKey === "Enter") {
+        setEditorInput(`${editorInput}\n`);
+        setCaretPosition(caretPosition + 1);
+        return;
+      }
+    }
+
+    if (eventKey === "Enter") {
       setProcessCurrentLine(true);
       return;
     }
 
     let nextInput = null;
 
-    if (event.ctrlKey && eventKey === "Enter") {
-      setProcessCurrentLine(true);
-      return;
-    }
     if (eventKey === "Backspace") {
       const [caretTextBefore, caretTextAfter] = Utils.splitStringAtIndex(
         editorInput,
@@ -155,7 +158,7 @@ export const useBufferedContent = (
   errorMessage: any,
   defaultHandler: any
 ) => {
-  const { bufferedContent, setBufferedContent, setTemporaryContent } =
+  const { setBufferedContent, setTemporaryContent } =
     React.useContext(TerminalContext);
   const style = React.useContext(StyleContext);
   const themeStyles = React.useContext(ThemeContext);
@@ -183,7 +186,9 @@ export const useBufferedContent = (
       const waiting = (
         <>
           <span style={{ color: themeStyles.themePromptColor }}>{prompt}</span>
-          <span>{currentText}</span>
+          <pre style={{ marginLeft: "8px", display: "inline-flex" }}>
+            {currentText}
+          </pre>
           <br />
         </>
       );
@@ -216,14 +221,14 @@ export const useBufferedContent = (
         }
       }
       const nextBufferedContent = (
-        <>
+        <div>
           {output ? (
             <pre>
               {output}
               <br />
             </pre>
           ) : null}
-        </>
+        </div>
       );
 
       setBufferedContent((previousBufferedContent: React.ReactNode) => (
@@ -238,6 +243,16 @@ export const useBufferedContent = (
 
     processCommand(currentText);
   }, [processCurrentLine]);
+
+  const clear = () => {
+    setBufferedContent("");
+    setCurrentText("");
+    setProcessCurrentLine(false);
+    setCaretPosition(0);
+    setBeforeCaretText("");
+    setAfterCaretText("");
+  };
+  return { clear };
 };
 
 export const useCurrentLine = (
@@ -304,8 +319,8 @@ export const useCurrentLine = (
       {mobileInput}
       <span style={{ color: themeStyles.themePromptColor }}>{prompt}</span>
       <div className={style.lineText}>
-        <span className={style.preWhiteSpace}>{beforeCaretText}</span>
-        {consoleFocused && caret ? ( // if caret isn't true, caret won't be displayed
+        <pre className={style.preWhiteSpace}>{beforeCaretText}</pre>
+        {consoleFocused && caret ? (
           <span className={style.caret}>
             <span
               className={style.caretAfter}
@@ -320,7 +335,7 @@ export const useCurrentLine = (
     <>
       {mobileInput}
       <div className={style.lineText}>
-        {consoleFocused && caret ? ( // if caret isn't true, caret won't be displayed
+        {consoleFocused && caret ? (
           <span className={style.caret}>
             <span
               className={style.caretAfter}
@@ -347,7 +362,7 @@ export const useCurrentLine = (
     multilineMode
   );
 
-  useBufferedContent(
+  const { clear } = useBufferedContent(
     processCurrentLine,
     setProcessCurrentLine,
     prompt,
@@ -361,7 +376,7 @@ export const useCurrentLine = (
     defaultHandler
   );
 
-  return currentLine;
+  return { currentLine, clear };
 };
 
 export const useScrollToBottom = (changesToWatch: any, wrapperRef: any) => {

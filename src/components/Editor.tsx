@@ -5,7 +5,7 @@ import { ThemeContext } from "../contexts/ThemeContext";
 import { TerminalContext } from "../contexts/TerminalContext";
 import { useCurrentLine, useScrollToBottom } from "../hooks/editor";
 
-export default function Editor(props: any) {
+const Editor = React.forwardRef((props: any, ref) => {
   const wrapperRef = React.useRef(null);
   const style = React.useContext(StyleContext);
   const themeStyles = React.useContext(ThemeContext);
@@ -26,7 +26,7 @@ export default function Editor(props: any) {
     multilineMode,
   } = props;
 
-  const currentLine = useCurrentLine(
+  const { currentLine, clear } = useCurrentLine(
     caret,
     consoleFocused,
     prompt,
@@ -37,6 +37,10 @@ export default function Editor(props: any) {
     wrapperRef,
     multilineMode
   );
+
+  React.useImperativeHandle(ref, () => ({
+    clear,
+  }));
 
   return (
     <div
@@ -52,4 +56,6 @@ export default function Editor(props: any) {
       {currentLine}
     </div>
   );
-}
+});
+
+export default Editor;

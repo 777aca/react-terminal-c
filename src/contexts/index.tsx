@@ -7,9 +7,7 @@ export default function ContextProvider(props: any) {
 
   return (
     <StyleContextProvider>
-      <ThemeContextProvider>
-        {children}
-      </ThemeContextProvider>
+      <ThemeContextProvider>{children}</ThemeContextProvider>
     </StyleContextProvider>
   );
 }

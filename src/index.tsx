@@ -6,7 +6,10 @@ import {
   TerminalContext as _TerminalContext,
 } from "./contexts/TerminalContext";
 
-export function ReactTerminal(props: any): any {
+// 导出 Terminal 组件中定义的 clear 函数
+export { clear } from "./components/Terminal";
+
+export function ReactTerminal(props) {
   return (
     <ContextProvider.default>
       <Terminal.default {...props} />
@@ -21,4 +24,5 @@ export default {
   ReactTerminal,
   TerminalContextProvider,
   TerminalContext,
+  clear: Terminal.clear,
 };

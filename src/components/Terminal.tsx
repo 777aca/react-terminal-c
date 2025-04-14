@@ -24,7 +24,15 @@ interface TerminalProps {
   defaultHandler: ((...args: never) => void) | null;
 }
 
-const Terminal: React.FC<TerminalProps> = ({
+let clearTerminalFunction = null;
+
+export function clear() {
+  if (typeof clearTerminalFunction === "function") {
+    clearTerminalFunction();
+  }
+}
+
+function Terminal({
   enableInput = true,
   caret = true,
   theme = "light",
@@ -37,13 +45,20 @@ const Terminal: React.FC<TerminalProps> = ({
   welcomeMessage = "",
   errorMessage = "not found!",
   defaultHandler = null,
-}) => {
+}: TerminalProps) {
   const wrapperRef = React.useRef(null);
+  const editorRef = React.useRef(null);
   const [consoleFocused, setConsoleFocused] = React.useState(!Utils.isMobile());
   const style = React.useContext(StyleContext);
   const themeStyles = React.useContext(ThemeContext);
 
   useClickOutsideEvent(wrapperRef, consoleFocused, setConsoleFocused);
+
+  React.useEffect(() => {
+    if (editorRef.current && editorRef.current.clear) {
+      clearTerminalFunction = editorRef.current.clear;
+    }
+  }, [editorRef.current]);
 
   const controls = showControlBar ? (
     <Controls
@@ -55,6 +70,7 @@ const Terminal: React.FC<TerminalProps> = ({
 
   const editor = (
     <Editor
+      ref={editorRef}
       caret={caret}
       consoleFocused={consoleFocused}
       prompt={prompt}
@@ -87,6 +103,6 @@ const Terminal: React.FC<TerminalProps> = ({
       </div>
     </div>
   );
-};
+}
 
 export default Terminal;

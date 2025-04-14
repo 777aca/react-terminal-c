@@ -4,7 +4,10 @@
     "es6": true,
     "jest": true
   },
-  "extends": ["plugin:react/recommended", "airbnb"],
+  "extends": [
+    "plugin:react/recommended",
+    "airbnb"
+  ],
   "globals": {
     "Atomics": "readonly",
     "SharedArrayBuffer": "readonly"
@@ -17,12 +20,24 @@
     "ecmaVersion": 2018,
     "sourceType": "module"
   },
-  "plugins": ["react", "@typescript-eslint"],
+  "plugins": [
+    "react",
+    "@typescript-eslint"
+  ],
   "rules": {
+    "linebreak-style": [
+      "error",
+      "unix"
+    ],
     "react/jsx-filename-extension": [
       2,
       {
-        "extensions": [".js", ".jsx", ".ts", ".tsx"]
+        "extensions": [
+          ".js",
+          ".jsx",
+          ".ts",
+          ".tsx"
+        ]
       }
     ],
     "react/jsx-props-no-spreading": "off",
@@ -39,12 +54,21 @@
     "import/no-unresolved": [
       "error",
       {
-        "ignore": ["react", "react-dom"]
+        "ignore": [
+          "react",
+          "react-dom"
+        ]
       }
     ],
     "jsx-a11y/aria-role": "off",
     "jsx-a11y/no-static-element-interactions": "off",
-    "quotes": [2, "double", { "avoidEscape": true }],
+    "quotes": [
+      2,
+      "double",
+      {
+        "avoidEscape": true
+      }
+    ],
     "comma-dangle": "off",
     "indent": "off",
     "react/jsx-indent": "off"
@@ -52,7 +76,12 @@
   "settings": {
     "import/resolver": {
       "node": {
-        "extensions": [".js", ".jsx", ".ts", ".tsx"]
+        "extensions": [
+          ".js",
+          ".jsx",
+          ".ts",
+          ".tsx"
+        ]
       }
     }
   }
