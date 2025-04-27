@@ -1,4 +1,4 @@
-import { UAParser } from 'ua-parser-js';
+import { UAParser } from "ua-parser-js";
 
 export default class Utils {
   static splitStringAtIndex(value: string, index: number) {
@@ -7,8 +7,9 @@ export default class Utils {
     }
     return [value.substring(0, index), value.substring(index)];
   }
+
   static isMobile(): boolean {
     const { device } = UAParser(window.navigator.userAgent);
-    return device.is('mobile');
+    return device.is("mobile");
   }
 }

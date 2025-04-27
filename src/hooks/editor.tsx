@@ -120,6 +120,13 @@ export const useEditorInput = (
       );
       nextInput = caretTextBefore + eventKey + caretTextAfter;
       setCaretPosition(caretPosition + 1);
+    } else if (eventKey === "Home") {
+      // 光标移动至最前面
+      setCaretPosition(0);
+      nextInput = editorInput;
+    } else if (eventKey === "End") {
+      setCaretPosition(editorInput.length);
+      nextInput = editorInput;
     } else nextInput = editorInput;
 
     setEditorInput(nextInput);
@@ -328,7 +335,7 @@ export const useCurrentLine = (
             />
           </span>
         ) : null}
-        <span className={style.preWhiteSpace}>{afterCaretText}</span>
+        <pre className={style.preWhiteSpace}>{afterCaretText}</pre>
       </div>
     </>
   ) : (
