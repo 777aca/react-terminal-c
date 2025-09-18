@@ -2,7 +2,7 @@
   <img src="https://react-terminal-c.sirv.com/static/terminal-logo-text.png" data-canonical-src="https://react-terminal-c.sirv.com/static/terminal-logo-text.png" width="145" height="50" />
 </h1>
 
-<p align="center">🚀 React component that renders a Terminal 🖥</p>
+<p align="center">渲染终端的React组件</p>
 
 <p align="center">
   <a href="https://codecov.io/gh/777aca/react-terminal-c"><img src="https://codecov.io/gh/777aca/react-terminal-c/branch/main/graph/badge.svg?token=xt1kdpvlam" data-canonical-src="https://codecov.io/gh/777aca/react-terminal-c/branch/main/graph/badge.svg?token=xt1kdpvlam"/></a>
